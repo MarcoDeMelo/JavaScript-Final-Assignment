@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>Airbnb Search App</h1>
+    <p>Marco De Melo</p>
+
+    <div class="border p-5 bg-light col-6">
+      <h1>One listing</h1>
+      <form action="/airbnb/find-one">
+        <label for="bedrooms">Minimum number of bedrooms</label>
+        <input type="text" id="bedrooms" name="bedrooms" value="1"><br><br>
+        <label for="guest">Maximum number of guest</label>
+        <input type="text" id="guest" name="guest" value="1"><br><br>
+        <label for="price">Maximum number of price</label>
+        <input type="text" id="price" name="price" value="1"><br><br>
+        <h2>Amenities</h2>
+            <input type="checkbox" name="amenities[]" id="wifi" value="49fcaedc-481a-4e05-934f-4867988c8ec5">
+            <label for="wifi">Wireless Internet</label><br>
+            <input type="checkbox" name="amenities[]" id="pool" value="f4e98f0a-053a-42e2-9633-0cca2a587410">
+            <label for="pool">Pool</label><br>
+            <input type="checkbox" name="amenities[]" id="breakfast" value="9c54e3ed-48b3-4438-bb2c-304e14a9bde4">
+            <label for="breakfast">Breakfast</label><br>
+            <input type="checkbox" name="amenities[]" id="pets" value="4a0a3fa7-21a0-411a-bb0a-9b4eed1901ef">
+            <label for="pets">Pets allowed</label><br>
+            <input type="checkbox" name="amenities[]" id="carbon" value="d7275f8c-70e5-4c27-bcd6-aafd5256fccd">
+            <label for="carbon">Carborn Monoxide Detector</label><br>
+  
+        <br><br>
+        <input type="submit" value="Send Query">
+      </form>
+    </div>
+
+    <div class="border p-5 mt-5 bg-light col-6">
+      <h1>Many listings</h1>
+      <form action="/airbnb/find-many">
+        <label for="bedrooms">Minimum number of bedrooms</label>
+        <input type="text" id="bedrooms" name="bedrooms">
+        <p></p>
+        <select name = "state" id="stateList" onchange="cityDrop()">
+          <option>--Select State-- </option>
+          <% for(let i = 0; i < state.length; i++) { %>
+            <option value="<%=state[i].id %>"> <%= state[i].name %> </option>
+          <% } %>
+      </select>
+      <p></p>
+      
+        <select name= "city" id="CityList">
+            <option value="id">--Select City-- </option>
+            
+        </select>
+        <p></p> 
+        <input type="submit" value="Send Query">
+      </form>
+    </div>
+
+
+    <script type="text/javascript">
+      
+      function cityDrop()
+      { 
+        
+      let checkedState =
+      document.querySelector('#stateList option:checked');
+      let cityList = document.getElementById('CityList');
+      cityList.innerHTML="";
+      <% for(let i = 0; i < city.length; i++)   { %>
+          if(checkedState.value=='<%=city[i].state_id%>')
+          cityList.innerHTML+=`<option value = "<%=city[i].id%>"><%=city[i].name%></option>`;
+           
+          
+          <% } %> 
+     }
+    
+    </script>
+  
+   
+  </body>
+</html>

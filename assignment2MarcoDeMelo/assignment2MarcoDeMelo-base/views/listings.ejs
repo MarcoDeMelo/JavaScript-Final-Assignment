@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= listing.name %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+    <body class="ms-5 mt-2">
+        <% for(let i = 0; i < listing.length; i++) { %>
+            <h1><a href="/find-one/?id=<%=listing[i].id%>"><%= listing[i].name %></a></h1>
+       <p><%= listing[i].number_rooms %> Room(s), <%= listing[i].max_guest %> Guest(s) Max,<%= listing[i].number_bathrooms %> bath, $ <%= listing[i].price_by_night %> CAD / A night %></p>
+      
+      
+       <% } %>
+    </body>
+    <form action="/"> 
+        <input type="submit" value="Home"/>
+        
+        </form>
+</html>
